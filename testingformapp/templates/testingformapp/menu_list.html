@@ -1,0 +1,27 @@
+{% extends 'testingformapp/default.html' %}
+
+{% block body %}
+<h2>Menus</h2>
+
+<table class="table">
+    <thead>
+        <th>Day</th>
+        <th>Orders</th>
+        <th>Options</th>
+    </thead>
+
+    <tbody>
+    {% for item in list %}
+    <tr>
+        <td><a href="{% url 'menu_detail' menu_id=item.id %}">{{ item.day }}</a></td>
+        <td>{{ item.orders_count }}</td>
+        <td>
+            <a class="btn btn-default" href="{% url 'menu_update' menu_id=item.id %}">update</a>
+            <a class="btn btn-default" href="{% url 'order_create' menu_id=item.id %}">new order</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

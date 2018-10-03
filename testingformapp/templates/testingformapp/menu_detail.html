@@ -1,0 +1,67 @@
+{% extends 'testingformapp/default.html' %}
+
+{% block body %}
+    <h2>{{ menu.day }}</h2>
+
+    <hr>
+
+    <h3>Options</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Orders</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for option in menu.options %}
+            <tr>
+                <td>{{ option.name }}</td>
+                <td>{{ option.orders_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th>Total</th>
+                <th>{{ menu.orders_count }}</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'menu_update' menu_id=menu.id %}">Update</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'order_create' menu_id=menu.id %}">New order</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h3>Orders</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Option</th>
+                <th>Observation</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in menu.orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.option.name }}</td>
+                <td>{{ option.observation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}

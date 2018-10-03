@@ -1,0 +1,19 @@
+{% extends 'testingformapp/default.html' %}
+
+{% block body %}
+    {% if not has_daily_menu %}
+    <div class="alert alert-warning">Aún no has creado un menú para hoy, <a href="{% url 'menu_create' %}" class="alert-link">¿crear menu?</a></div>
+    {% endif %}
+
+    {% if daily_menu %}
+    <div class="alert alert-{% if daily_menu.is_closed %}success{% else %}info{% endif %}">
+        {% if daily_menu.is_closed %}
+            <h4 class="alert-heading">¡Ya cerro el menú por hoy!</h4>
+        {% else %}
+            <h4 class="alert-heading">Menú diarío</h4>
+        {% endif %}
+        <p>Hay {{ daily_menu.orders_count }} ordenes.</p>
+        <p><a href="{% url 'menu_detail' menu_id=daily_menu.id %}" class="btn btn-primary">Ir al menú</a></p>
+    </div>
+    {% endif %}
+{% endblock body %}

@@ -1,0 +1,19 @@
+{% extends 'testingformapp/default.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{ menu_form | crispy }}
+
+    <h3>Options</h3>
+    {{ options_form | crispy }}
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+
+{% endblock body %}

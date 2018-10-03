@@ -1,0 +1,21 @@
+{% extends 'testingformapp/default.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <h2>{{ menu.day }}</h2>
+
+    {% if menu.is_closed %}
+        <div class="alert alert-warning">Este menú ya no acepta nuevas ordenes.</div>
+    {% else %}
+        <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+    {% endif %}
+
+{% endblock body %}

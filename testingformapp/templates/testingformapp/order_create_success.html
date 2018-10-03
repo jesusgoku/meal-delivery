@@ -1,0 +1,7 @@
+{% extends 'testingformapp/default.html' %}
+
+{% block body %}
+    <h2>{{ menu.day }}</h2>
+    <p><strong>Option:</strong> {{ order.option.name }}</p>
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+{% endblock body %}
